@@ -1,0 +1,78 @@
+.content-profile{
+    margin-top: 80px;
+    width: 100%;
+    max-width: 1112px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px 24px;
+    display: flex;
+}
+.preview-avatar{
+    width: 248px;
+}
+.preview-avatar .show-avatar{
+    width: 248px;
+    height: 248px;
+    /* overflow: hidden; */
+    position: relative;
+}
+.preview-avatar .show-avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.show-name p{
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 19px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #282739;
+}
+
+.icon-change-avatar{
+    position: absolute;
+    z-index: 1;
+    top: 75%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.icon-change-avatar i {
+    font-size: 30px;
+    color: white;
+    padding: 5.5px;
+    border-radius: 50%;
+    background-color: #FF7506;
+    border: 2px solid #FFFFFF;
+}
+
+.form-profile{
+    width: calc(100% - 248px);
+    padding: 0 24px;
+    padding-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-profile .form-group{
+    margin-bottom: 24px;
+    /* margin-left: 12px;
+    margin-right: 12px; */
+    width: calc(100% / 2 - 12px);
+    min-width: 200px;
+}
+
+.form-profile .form-group label{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #282739;
+}
