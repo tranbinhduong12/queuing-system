@@ -1,0 +1,42 @@
+.flex-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.content-table{
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 10px
+}
+.form-group{
+    width: 90%;
+}
+.form-group .form-control{
+    width: 100%;
+}
+.search-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.search-flex input{
+    width: 100% !important;
+}
+.search-flex .form-group{
+    width: 48% !important;
+}
+.search-keyword{
+    margin-left: 10%;
+}
+.form-group i{
+    top: 68%;
+    right: 20px;
+}
+
+.content-white{
+    height: 100%;
+}
+
+.btn-add{
+    right: 0;
+    
+}
