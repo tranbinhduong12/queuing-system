@@ -1,20 +1,21 @@
 <div class="topbar">
     <ul class="page-name">
-        {{-- <li>
-            <a href="">
-                test
-            </a>
-            <i class="fas fa-chevron-right"></i>
-        </li>
+        @if (@isset($records))
+            @foreach ($records as $record)
+                <li>
+                    <a
+                    @if (@isset($record->url))
+                        href="{{ $record->url }}"
+                    @endif
+                >
+                    {{ $record->name }}
+                </a>
+                <i class="fas fa-chevron-right"></i>
+                </li>
+            @endforeach
+        @endisset
         <li>
-            <a href="">
-                test
-            </a>
-            <i class="fas fa-chevron-right"></i>
-
-        </li> --}}
-        <li>
-            <a href="">
+            <a >
                 @yield('webName')
             </a>
             <i class="fas fa-chevron-right"></i>

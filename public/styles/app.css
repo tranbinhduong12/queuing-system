@@ -107,6 +107,7 @@ ul {
 
 .container-web .navbar .navbar-menu .item-func:hover .sub-nav {
     display: block;
+    z-index: 9999;
 }
 
 /* navbar end :v */
@@ -130,7 +131,7 @@ ul {
     line-height: 30px;
     font-weight: 700;
     color: #7e7d88;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .page-name li i {
@@ -285,6 +286,7 @@ ul {
 
 .active-alert{
     display: block;   
+    z-index: 9999;
 }
 
 /* pop up end */

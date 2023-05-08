@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('webName', 'Cập nhật thiết bị')
+@section('webName', 'Thêm thiết bị')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
@@ -59,6 +59,8 @@
                                 <span style="color: red; margin-right: 5px; font-size: 18px">*</span> là trường thông tin bắt buộc
                             </p>
                         </div>
+                        <button type="submit" style="display: none" id="btn-submit"></button>
+
                     </form>                    
                 </div>
                 <div class="form-btn">
@@ -73,9 +75,4 @@
 @endsection
 
 @section('js')
-<script>
-    function submit(){
-        document.getElementById('form-submit').submit();
-    }
-</script>
 @endsection

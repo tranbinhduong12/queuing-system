@@ -4,6 +4,11 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+    <style>
+        .form-check-input {
+            transform: translateY(9px)
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -23,19 +28,23 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" style="max-width: calc(100% - 24px)">
-                                <label for="service_id">Mã dịch vụ: <span style="color: red; font-size: 18px">*</span></label>
-                                <input type="text" class="form-control" id="service_id" name="service_id" placeholder="Nhập mã dịch vụ">
+                                <label for="service_id">Mã dịch vụ: <span
+                                        style="color: red; font-size: 18px">*</span></label>
+                                <input type="text" class="form-control" id="service_id" name="service_id"
+                                    placeholder="Nhập mã dịch vụ">
                             </div>
                             <div class="form-group" style="max-width: calc(100% - 24px)">
-                                <label for="service_name">Tên dịch vụ: <span style="color: red; font-size: 18px">*</span></label>
-                                <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Nhập tên dịch vụ">
+                                <label for="service_name">Tên dịch vụ: <span
+                                        style="color: red; font-size: 18px">*</span></label>
+                                <input type="text" class="form-control" id="service_name" name="service_name"
+                                    placeholder="Nhập tên dịch vụ">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" style="max-width: calc(100% - 24px)">
                                 <label for="service_description">Mô tả:</label>
                                 <br>
-                                <textarea  class="form-control" name="service_description" id="service_description" rows="5"></textarea>
+                                <textarea class="form-control" name="service_description" id="service_description" rows="5"></textarea>
                             </div>
                         </div>
 
@@ -46,45 +55,53 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="service_description" style="width: 130px">Tăng tự động từ:</label>
-                                <input class="form-control mini-input" type="text" value="" id="" placeholder="0000">
-                                <label for="service_description" style="width: 50px">Đến:</label>
-                                <input class="form-control mini-input" type="text" value="" id="" placeholder="9999">                                
+                                <input class="form-check-input" type="checkbox" value="" id="auto-range">
+                                <label for="auto-range" style="width: 130px">Tăng tự động từ:</label>
+                                <input class="form-control mini-input" type="text" value="" id=""
+                                    placeholder="0000">
+                                <label for="" style="width: 50px">Đến:</label>
+                                <input class="form-control mini-input" type="text" value="" id=""
+                                    placeholder="9999">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="service_description" style="width: 130px">Prefix:</label>
-                                <input class="form-control mini-input" type="text" value="" id="" placeholder="0001">
-                                
+                                <input class="form-check-input" type="checkbox" value="" id="Prefix">
+                                <label for="Prefix" style="width: 130px">Prefix:</label>
+                                <input class="form-control mini-input" type="text" value="" id=""
+                                    placeholder="0001">
+
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="service_description" style="width: 130px">Surfix:</label>
-                                <input class="form-control mini-input" type="text" value="" id="" placeholder="0001">
-                                
+                                <input class="form-check-input" type="checkbox" value="" id="Surfix">
+                                <label for="Surfix" style="width: 130px">Surfix:</label>
+                                <input class="form-control mini-input" type="text" value="" id=""
+                                    placeholder="0001">
+
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label for="service_description" style="width: 130px">Reset mỗi ngày</label>
-                                
+                                <input class="form-check-input" type="checkbox" value="" id="auto_reset"
+                                    style="transform: none">
+                                <label for="auto_reset" style="width: 130px">Reset mỗi ngày</label>
+
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <div class="form-group">
                                 <p class="text-alert-require">
-                                    <span style="color: red; margin-right: 5px; font-size: 18px">*</span> là trường thông tin bắt buộc
+                                    <span style="color: red; margin-right: 5px; font-size: 18px">*</span> là trường thông
+                                    tin bắt buộc
                                 </p>
                             </div>
                         </div>
-                    </form>                    
+                        <button type="submit" style="display: none" id="btn-submit"></button>
+
+                    </form>
                 </div>
                 <div class="form-btn">
                     <a href="{{ route('auth.service.index') }}">
@@ -98,9 +115,5 @@
 @endsection
 
 @section('js')
-<script>
-    function submit(){
-        document.getElementById('form-submit').submit();
-    }
-</script>
+
 @endsection

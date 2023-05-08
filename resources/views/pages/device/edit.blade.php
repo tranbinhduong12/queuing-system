@@ -59,6 +59,8 @@
                                 <span style="color: red; margin-right: 5px; font-size: 18px">*</span> là trường thông tin bắt buộc
                             </p>
                         </div>
+                        <button type="submit" style="display: none" id="btn-submit"></button>
+
                     </form>
                                       
                 </div>
@@ -74,9 +76,4 @@
 @endsection
 
 @section('js')
-<script>
-    function submit(){
-        document.getElementById('form-submit').submit();
-    }
-</script>
 @endsection

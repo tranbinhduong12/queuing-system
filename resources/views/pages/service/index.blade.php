@@ -3,7 +3,9 @@
 @section('webName', 'Danh sách dịch vụ')
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/format_css_date_time.css') }}">
 @endsection
 
 @section('content')
@@ -32,7 +34,8 @@
                                 <option value="yes">Kết nối</option>
                                 <option value="no">Mất kết nối</option>
                             </select> --}}
-                            <input type="text" id="daterange" name="daterange" class="form-control">
+                            <input class="form-control form-control-solid" placeholder="Pick date rage"
+                                id="kt_daterangepicker_1" />
                         </div>
                     </div>
                     <div class="search-right">
@@ -113,50 +116,11 @@
 @endsection
 
 @section('js')
-
-
-<script>
-    $(function() {
-        $('#daterange').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        });
-    });
-
-        var textViews = document.querySelectorAll('.text-view');
-        var textHiddens = document.querySelectorAll('.text-hidden');
-
-        function resetE() {
-            textViews.forEach(function(textView) {
-                textView.style.display = 'block'
-            });
-            textHiddens.forEach(function(textView) {
-                textView.style.display = 'none'
-            });
-        }
-        // Lắng nghe sự kiện khi click vào phần tử có class "btn-text-active"
-        document.querySelectorAll('.btn-text-active').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                // reset lại tất cả các phần tử có class "text-view"
-                resetE();
-
-                // Lấy phần tử cha của nút được click
-                var parent = this.parentElement.parentElement;
-
-                // Ẩn phần tử có class "text-view" trong phần tử cha
-                parent.querySelector('.text-view').style.display = 'none';
-
-                // Hiển thị phần tử có class "text-hidden" trong phần tử cha
-                parent.querySelector('.text-hidden').style.display = 'block';
-            });
-        });
-
-        // Lắng nghe sự kiện khi click vào bất kỳ phần tử nào trên trang
-        document.addEventListener('click', function(event) {
-            if (!event.target.matches('.text-hidden, .tag-active, .btn-text-active')) {
-                resetE()
-            }
-        });
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
+    <script>
+        $("#kt_daterangepicker_1").daterangepicker();
     </script>
 @endsection

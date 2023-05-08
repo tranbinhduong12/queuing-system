@@ -1,0 +1,51 @@
+.form-group {
+    width: 100% !important;
+    min-width: 400px !important;
+    max-width: 560px !important;
+}
+.form-group textarea{
+    height: 160px;
+}
+.list-action{
+    height: 420px;
+    padding: 16px 20px;
+    background-color: #FFF2E7;
+    overflow-y: scroll;
+    border-radius: 8px;
+}
+.list-action ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.list-action ul li{
+    padding: 8px 0;
+    display: flex;
+    color: #535261;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+}
+.list-action ul li input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+.list-action::-webkit-scrollbar {
+    width: 4px; /* chiều rộng thanh kéo */
+    height: 340px;
+}
+
+.list-action::-webkit-scrollbar-track {
+    background-color: transparent; /* màu nền của thanh kéo */
+}
+
+.list-action::-webkit-scrollbar-thumb {
+    background-color: #FFC89B;
+    border-radius: 43px; 
+}
+
+.list-action::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* màu của thanh kéo khi hover */
+}

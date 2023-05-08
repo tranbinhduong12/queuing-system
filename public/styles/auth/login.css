@@ -112,6 +112,7 @@
         /* upper case */
         text-transform: uppercase;
     }
+
     .form-error input{
         border-color: red;
     }
