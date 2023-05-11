@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -11,9 +12,20 @@ class AuthController extends Controller
         return view('auth/login');
     }
 
-    public function logging()
+    public function logging(Request $request)
     {
-        return redirect()->route('auth.my-profile');
+        $username = $request->username;
+        $password = $request->password;
+        // check username and password from database users
+        $user = User::where('username', $username)->where('password', $password)->first();
+        if ($user) {
+            $user->role = $user->role()->first();
+            auth()->login($user);
+            $this->historyUser('Đăng nhập vào hệ thống');
+            return redirect()->route('admin.my-profile');
+        }else{
+            return redirect()->route('admin.login')->with('error', 'Username or password is incorrect');
+        }
     }
 
     public function forgotPassword()
@@ -28,15 +40,15 @@ class AuthController extends Controller
 
     public function myProfile()
     {
-        $data = (object) [
-            'name' => 'Trần Bình Dương',
-            'email' => 'admin@gmail.com',
-            'phone' => '0123456789',
-            'username' => 'tranbinhduong0909',
-            'password' => '123123',
-            'role' => 'Developer',
-        ];
+        $data = auth()->user();
 
         return view('auth/my-profile', compact("data"));
+    }
+
+    public function logout()
+    {
+        $this->historyUser('Đăng xuất khỏi hệ thống');
+        auth()->logout();
+        return redirect()->route('admin.login');
     }
 }

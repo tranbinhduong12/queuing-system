@@ -46,7 +46,7 @@
                 </form>
                 <div class="col-md-12" style="margin-top: 16px; position: relative">
                     <!-- Content -->
-                    <a href="{{ route('auth.device.create') }}">
+                    <a href="{{ route('admin.device.create') }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-plus"></i>
                             <p>
@@ -68,55 +68,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>123456</td>
-                                    <td>Tên thiết bị 1</td>
-                                    <td>192.168.1.1</td>
                                     <td>
-                                        @if ($i % 2 == 0)
+                                        {{ $item->id }}
+                                    </td>
+                                    <td>
+                                        {{ $item->name }}
+                                    </td>
+                                    <td>
+                                        {{ $item->ip }}
+                                    </td>
+                                    <td>
+                                        @if ($item->online)
                                             <i class="fa-solid fa-circle connected"></i>
+                                            Trực tuyến
                                         @else
                                             <i class="fa-solid fa-circle unconnected"></i>
+                                            Ngưng hoạt động
                                         @endif
-                                        Trực tuyến
                                     </td>
                                     <td>Có</td>
                                     <td class="view-detail-text">
                                         <span class="text-view">
-                                            khám tim mạch, khám mắt...
+                                            {{ substr($item->services()[0], 0, 35) }}
                                             <br>
                                             <a class="tag-active btn-text-active">Xem thêm</a>
                                         </span>
                                         <span class="text-hidden">
-                                            khám tim mạch, khám sản - phụ khoa, khám răng hàm mặt, khám tai mũi họng, khám
-                                            hô hấp, khám tổng quan
+                                            {{ $item->services()[0] }}
                                         </span>
                                     </td>
-                                    <td><a class="tag-active" href="{{ route('auth.device.show', $i) }}">Chi tiết</a></td>
-                                    <td><a class="tag-active" href="{{ route('auth.device.edit', $i) }}">Cập nhập</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.device.show', $item->id) }}">Chi tiết</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.device.edit', $item->id) }}">Cập nhập</a></td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-box">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="fa-solid fa-caret-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="fa-solid fa-caret-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $data->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

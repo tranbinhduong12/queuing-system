@@ -4,6 +4,28 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+    <style>
+        .btn-toggle-password-div {
+            position: absolute;
+            right: 5px;
+            z-index: 999;
+        }
+
+        .btn-toggle-password {
+            border: none;
+            background-color: transparent;
+            outline: none;
+            height: 36px;
+        }
+        .input-group {
+            position: relative;
+            flex-direction: column-reverse !important;
+        }
+        .icon{
+            top: 35% !important;
+            right: 28px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -11,11 +33,17 @@
         <p class="title">
             Quản lý tài khoản
         </p>
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Lỗi!</strong> {{ $errors->first() }}
+            </div>
+        @endif
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
-                    <form class="col-md-12 form-search" id="form-submit">
+                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('system.user.store') }}">
                         <!-- Search section -->
+                        @csrf
                         <div class="form-group form-group2">
                             <div class="text-header">
                                 Thông tin tài khoản
@@ -23,15 +51,15 @@
                         </div>
                         <div class="form-group">
                             <label for="fullname">Họ tên: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" required placeholder="Nhập họ tên">
+                            <input type="text" class="form-control" id="fullname" name="full_name" required placeholder="Nhập họ tên" value="{{ old('full_name') }}">
                         </div>
                         <div class="form-group">
                             <label for="username">Tên đăng nhập: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="username" name="username" required placeholder="Nhập tên đăng nhập">
+                            <input type="text" class="form-control" id="username" name="username" required placeholder="Nhập tên đăng nhập" value="{{ old('username') }}">
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="phone" name="phone" required placeholder="Nhập số điện thoại">
+                            <input type="text" class="form-control" id="phone" name="phone" required placeholder="Nhập số điện thoại" value="{{ old('phone') }}">
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu: <span style="color: red; font-size: 18px">*</span></label>
@@ -46,12 +74,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password">Mật khẩu: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="password" name="password" required placeholder="Nhập mật khẩu">
-                        </div>
-                        <div class="form-group">
                             <label for="email">Email: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="email" name="email" required placeholder="Nhập email">
+                            <input type="text" class="form-control" id="email" name="email" required placeholder="Nhập email" value="{{ old('email') }}">
                         </div>
                         <div class="form-group">
                             <label for="device_ip">Nhập lại mật khẩu: <span
@@ -68,19 +92,19 @@
                         </div>
                         <div class="form-group">
                             <label for="device_type">Vai trò: <span style="color: red; font-size: 18px">*</span></label>
-                            <select class="form-control" name="device_type" id="device_type">
+                            <select class="form-control" name="role_id" id="device_type" required>
                                 <option disabled selected>Chọn vai trò</option>
-                                <option value="connected">Kết nối</option>
-                                <option value="disconnected">Mất kết nối</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>
                         <div class="form-group">
                             <label for="device_type">Tình trạng: <span style="color: red; font-size: 18px">*</span></label>
-                            <select class="form-control" name="device_type" id="device_type">
-                                <option value="all">Tất cả</option>
-                                <option value="connected">Kết nối</option>
-                                <option value="disconnected">Mất kết nối</option>
+                            <select class="form-control" name="status" id="device_type">
+                                <option value="1">Hoạt Động</option>
+                                <option value="0">Ngưng hoạt động</option>
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>

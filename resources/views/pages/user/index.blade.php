@@ -19,9 +19,10 @@
                         <div class="form-group">
                             <label for="active">Tên vai trò</label>
                             <select class="form-control" id="active" name="active">
-                                <option value="all">Tất cả</option>
-                                <option value="yes">Hoạt động</option>
-                                <option value="no">Ngưng hoạt động</option>
+                                <option value="0">Tất cả</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>
@@ -59,15 +60,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>Beiu@123</td>
-                                    <td>Nguyen Van A</td>
-                                    <td>092173245</td>
-                                    <td>email@gmail.com</td>
-                                    <td>Kế toán</td>
                                     <td>
-                                        @if ($i % 2 == 0)
+                                        {{ $item->username }}
+                                    </td>
+                                    <td>
+                                        {{ $item->full_name }}
+                                    </td>
+                                    <td>
+                                        {{ $item->phone }}
+                                    </td>
+                                    <td>
+                                        {{ $item->email }}
+                                    </td>
+                                    <td>
+                                        {{ $item->role_name }}
+                                    </td>
+                                    <td>
+                                        @if ($item->status == 1)
                                             <i class="fa-solid fa-circle connected"></i>
                                             Hoạt động
                                         @else
@@ -75,29 +86,13 @@
                                             Ngưng hoạt động
                                         @endif
                                     </td>
-                                    <td><a class="tag-active" href="{{ route('system.user.edit', $i) }}">Cập nhập</a></td>
+                                    <td><a class="tag-active" href="{{ route('system.user.edit', $item->id) }}">Cập nhập</a></td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-box">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="fa-solid fa-caret-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="fa-solid fa-caret-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $data->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

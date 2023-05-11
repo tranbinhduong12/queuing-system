@@ -15,7 +15,7 @@
             <div class="content">
                 <div class="content-white">
                     <!-- Content -->
-                    <a href="{{ route('auth.queue.index') }}">
+                    <a href="{{ route('admin.queue.index') }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-rotate-left"></i>
                             <p>
@@ -38,7 +38,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        Phạm Thị Yên
+                                        {{ $data->name_user }}
                                     </span>
                                 </label>
                             </div>
@@ -49,7 +49,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        Khám trái tim
+                                        {{ $data->service_name }}
                                     </span>
                                 </label>
                             </div>
@@ -60,7 +60,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        2001293
+                                        {{ $data->stt }}
                                     </span>
                                 </label>
                             </div>
@@ -71,7 +71,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        12:00:00 12/12/2021
+                                        {{ $data->created_at->format('H:i:m') }} - {{ $data->created_at->format('d/m/Y') }}
                                     </span>
                                 </label>
                             </div>
@@ -82,7 +82,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        12:00:00 12/12/2021
+                                        {{ (new DateTime('@' . strtotime($data->expires_at)))->format('H:i:s') }} - {{ (new DateTime('@' . strtotime($data->expires_at)))->format('d/m/Y') }}
                                     </span>
                                 </label>
                             </div>
@@ -95,7 +95,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        Kiosk
+                                        {{ $data->device_name }}
                                     </span>
                                 </label>
                             </div>
@@ -106,8 +106,8 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        <icon class="fa-solid fa-circle text-green"></icon>
-                                        Đang chờ
+                                        <icon class="fa-solid fa-circle connected" style="color: {{ $data->status_color() }}"></icon>
+                                        {{ $data->status() }}
                                     </span>
                                 </label>
                             </div>
@@ -118,7 +118,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        078231233
+                                        {{ $data->phone }}
                                     </span>
                                 </label>
                             </div>
@@ -129,7 +129,7 @@
                                     </span>
                                     <br>
                                     <span class="span-data" style="margin-top: 5px">
-                                        yen@gmail.com
+                                        {{ $data->email }}
                                     </span>
                                 </label>
                             </div>

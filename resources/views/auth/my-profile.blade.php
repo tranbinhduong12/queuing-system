@@ -10,21 +10,21 @@
     <div class="content-profile">
         <div class="preview-avatar">
             <div class="show-avatar">
-                <img src="{{ asset('images/avatar.jpg') }}" alt="avatar">
+                <img src="{{ asset("images/$data->image") }}" alt="avatar">
                 <label for="" class="icon-change-avatar">
                     <i class="fa-solid fa-camera"></i>
                 </label>
             </div>
             <div class="show-name">
                 <p>
-                    Trần Bình Dương
+                    {{ $data->full_name }}
                 </p>
             </div>
         </div>
         <form class="form-profile">
             <div class="form-group">
                 <label for="name" class="form-label">Tên người dùng</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $data->name }}" readonly>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $data->full_name }}" readonly>
             </div>
             <div class="form-group">
                 <label for="username" class="form-label">Tên đăng nhập</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label for="role" class="form-label">Chức vụ</label>
-                <input type="text" class="form-control" id="role" name="role" value="{{ $data->role }}" readonly>
+                <input type="text" class="form-control" id="role" name="role" value="{{ $data->role->name }}" readonly>
             </div>
             
         </form>

@@ -26,7 +26,7 @@
                             alt="logo {{ config('app.name', 'Laravel') }}"
                             style="width: 170px; max-width: 90%; height: auto">
                     </div>
-                    <form action="{{ route("auth.logging") }}" method="POST" style="max-width: 400px; margin-top: 50px"
+                    <form action="{{ route("admin.logging") }}" method="POST" style="max-width: 400px; margin-top: 50px"
                         class="w-100 @if (session()->has('error')) form-error @endif">
                         <label for="username" class="form-label">
                             Tên đăng nhập
@@ -37,7 +37,7 @@
                         @csrf
                         <div class="input-group mb-3">
                             <input type="text" class="form-control form-error" id="username"
-                                name="username" placeholder="Tên đăng nhập">
+                                name="username" placeholder="Tên đăng nhập" >
                         </div>
                         <label for="password" class="form-label">
                             Mật khẩu
@@ -60,7 +60,7 @@
                                     {{ session()->get('error') }}
                                 </span>
                             @else
-                                <a href="{{ route('auth.forgot-password') }}" class="a-forgot-password">
+                                <a href="{{ route('admin.forgot-password') }}" class="a-forgot-password">
                                     Quên mật khẩu?
                                 </a>
                             @endif
@@ -71,7 +71,7 @@
                             </button>
                             @if (session()->has('error'))
                                 <label for="" class="form-label">
-                                    <a href="{{ route('auth.forgot-password') }}" class="a-forgot-password">
+                                    <a href="{{ route('admin.forgot-password') }}" class="a-forgot-password">
                                         Quên mật khẩu?
                                     </a>
                                 </label>

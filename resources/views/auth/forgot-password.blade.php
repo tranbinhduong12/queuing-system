@@ -43,7 +43,7 @@
                             alt="logo {{ config('app.name', 'Laravel') }}"
                             style="width: 170px; max-width: 90%; height: auto">
                     </div>
-                    <form action="{{ route('auth.new-password') }}" class="w-100" style="max-width: 400px; margin-top: 70px">
+                    <form action="{{ route('admin.new-password') }}" class="w-100" style="max-width: 400px; margin-top: 70px">
                         <div class="form-label text-center text-bold" style="size: 22px">
                             <strong>
                                 Đặt lại mật khẩu
@@ -60,7 +60,7 @@
                             <input type="email" name="email" class="form-control" id="email" placeholder="Tên đăng nhập" required>
                         </div>
                         <div class="button-action">
-                            <a href="{{ route('auth.login') }}">
+                            <a href="{{ route('admin.login') }}">
                                 <button type="button" class="btn btn-outline-primary">
                                     Hủy
                                 </button>

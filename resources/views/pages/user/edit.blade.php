@@ -33,11 +33,18 @@
         <p class="title">
             Quản lý tài khoản
         </p>
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Lỗi!</strong> {{ $errors->first() }}
+            </div>
+        @endif
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
-                    <form class="col-md-12 form-search" id="form-submit">
+                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('system.user.update', $id) }}">
                         <!-- Search section -->
+                        @csrf
+                        @method('PUT')
                         <div class="form-group form-group2">
                             <div class="text-header">
                                 Thông tin tài khoản
@@ -45,8 +52,8 @@
                         </div>
                         <div class="form-group">
                             <label for="fullname">Họ tên: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="fullname" name="fullname"
-                                value="{{ $data->fullname }}" placeholder="Nhập họ tên" required>
+                            <input type="text" class="form-control" id="fullname" name="full_name"
+                                value="{{ $data->full_name }}" placeholder="Nhập họ tên" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Tên đăng nhập: <span style="color: red; font-size: 18px">*</span></label>
@@ -90,19 +97,22 @@
                         </div>
                         <div class="form-group">
                             <label for="device_type">Vai trò: <span style="color: red; font-size: 18px">*</span></label>
-                            <select class="form-control" name="device_type" id="device_type">
-                                <option disabled selected>Chọn vai trò</option>
-                                <option value="connected">Kết nối</option>
-                                <option value="disconnected">Mất kết nối</option>
+                            <select class="form-control" name="role_id" id="device_type">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        {{ $role->id == $data->role_id ? 'selected' : '' }}
+                                        >{{ $role->name }}
+                                    </option>
+                                @endforeach
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>
                         <div class="form-group">
                             <label for="device_type">Tình trạng: <span style="color: red; font-size: 18px">*</span></label>
-                            <select class="form-control" name="device_type" id="device_type">
+                            <select class="form-control" name="status" id="device_type">
                                 <option value="all">Tất cả</option>
-                                <option value="connected">Kết nối</option>
-                                <option value="disconnected">Mất kết nối</option>
+                                <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Hoạt động</option>
+                                <option value="0" {{ $data->status == 0 ? 'selected' : '' }}>Không hoạt động</option>
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>

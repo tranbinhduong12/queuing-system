@@ -4,6 +4,23 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css">
+    <style>
+
+        pre {
+            margin-top: 20px;
+        }
+        .select2-selection__choice{
+            padding: 2px 5px !important;
+            margin: 0 5px !important;
+            margin-right: 0px !important;
+        }
+        .select2-selection--multiple{
+            padding: 6px 0 !important;
+            padding-bottom: 0 !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -11,11 +28,18 @@
         <p class="title">
             Quản lý thiết bị
         </p>
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Lỗi!</strong> {{ $errors->first() }}
+            </div>
+        @endif
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
-                    <form class="col-md-12 form-search" id="form-submit">
+                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('admin.device.update', $id) }}">
                         <!-- Search section -->
+                        @method('PUT')
+                        @csrf
                         <div class="form-group form-group2">
                             <div class="text-header">
                                 Thông tin thiết bị
@@ -23,36 +47,41 @@
                         </div>
                         <div class="form-group">
                             <label for="device_id">Mã Thiết bị: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="device_id" name="device_id" placeholder="Nhập mã Thiết bị" value="{{ $data->device_id }}">
+                            <input type="text" class="form-control" id="device_id" name="id" placeholder="Nhập mã Thiết bị" value="{{ $data->id }}">
                         </div>
                         <div class="form-group">
                             <label for="device_type">Loại thiết bị:</label>
-                            <select class="form-control" name="device_type" id="device_type">
-                                <option value="all" @if ($data->device_type === 'all') selected @endif>Tất cả</option>
-                                <option value="connected" @if ($data->device_type === 'connected') selected @endif>Kết nối</option>
-                                <option value="disconnected" @if ($data->device_type === 'disconnected') selected @endif>Mất kết nối</option>
+                            <select class="form-control" name="type" id="device_type">
+                                <option value="Kiosk" @if ($data->type === 'Kiosk') selected @endif>Kiosk</option>
+                                <option value="Display counter" @if ($data->type === 'Display counter') selected @endif>Display counter</option>
                             </select>
                             <i class="fa-solid fa-caret-down"></i>
                         </div>
                         <div class="form-group">
                             <label for="device_name">Tên thiết bị:</label>
-                            <input type="text" class="form-control" id="device_name" name="device_name" placeholder="Nhập tên thiết bị" value="{{ $data->device_name }}">
+                            <input type="text" class="form-control" id="device_name" name="name" placeholder="Nhập tên thiết bị" value="{{ $data->name }}">
                         </div>
                         <div class="form-group">
                             <label for="device_username">Tên đăng nhập:</label>
-                            <input type="text" class="form-control" id="device_username" name="device_username" placeholder="Nhập tài khoản" value="{{ $data->device_username }}">
+                            <input type="text" class="form-control" id="device_username" name="username" placeholder="Nhập tài khoản" value="{{ $data->username }}">
                         </div>
                         <div class="form-group">
                             <label for="device_ip">Địa chỉ ip:</label>
-                            <input type="text" class="form-control" id="device_ip" name="device_ip" placeholder="Nhập địa chỉ IP" value="{{ $data->device_ip }}">
+                            <input type="text" class="form-control" id="device_ip" name="ip" placeholder="Nhập địa chỉ IP" value="{{ $data->ip }}">
                         </div>
                         <div class="form-group">
                             <label for="device_password">Mật khẩu:</label>
-                            <input type="text" class="form-control" id="device_password" name="device_password" placeholder="Nhập mật khẩu" value="{{ $data->device_password }}">
+                            <input type="text" class="form-control" id="device_password" name="password" placeholder="Nhập mật khẩu" value="{{ $data->password }}">
                         </div>
                         <div class="form-group form-group2">
                             <label for="service">Dịch vụ sử dụng:</label>
-                            <input type="text" class="form-control" id="service" name="service" placeholder="Nhập dịch vụ sử dụng" value="{{ $data->service }}">
+                            {{-- <input type="text" class="form-control" id="service" name="service"
+                                placeholder="Nhập dịch vụ sử dụng"> --}}
+                                <div id="app">
+                                    <multiple-select inline-template>
+                                            <select-2 :options="options" name="service_ids[]" v-model="selected" multiple=true></select-2>
+                                    </multiple-select>
+                                </div>
                         </div>
                         <div class="form-group">
                             <p class="text-alert-require">
@@ -65,7 +94,7 @@
                                       
                 </div>
                 <div class="form-btn">
-                    <a href="{{ route('auth.device.show', $id) }}">
+                    <a href="{{ route('admin.device.show', $id) }}">
                         <button class="btn btn-blur">Hủy bỏ</button>
                     </a>
                     <button class="btn btn-bold" onclick="submit()">Cập nhập</button>
@@ -76,4 +105,33 @@
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="{{ asset('js/setupVue.js') }}"></script>
+    <script>
+    
+        const options = {
+            @foreach ($services as $service)
+                {{ $service->id }}: '{{ $service->name }}',
+            @endforeach
+        }
+
+        const multiSelect = Vue.component('multiple-select', {
+            data() {
+                return {
+                    options: options,
+                    selected: [
+                        @foreach ($data->services()[1] as $service)
+                            '{{ $service->id }}',
+                        @endforeach
+                    ]
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+        })
+    </script>
 @endsection

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class action extends Model
 {
     use HasFactory;
+    protected $table = 'actions';
+    protected $fillable = [
+        'name',
+        'description',
+        'group',
+    ];
 }

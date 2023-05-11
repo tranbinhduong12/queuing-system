@@ -25,7 +25,7 @@
                 </form>
                 <div class="col-md-12" style="margin-top: 16px; position: relative">
                     <!-- Content -->
-                    <a href="{{ route('auth.service.create') }}">
+                    <a href="#">
                         <button class="btn-add">
                             <i class="fa-solid fa-file-arrow-down"></i>
                             <p>
@@ -44,48 +44,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td>123456</td>
-                                    <td>Tên thiết dịch vụ</td>
-                                    <td>
-                                        20/10/2021
+                                    <td class="text-center">
+                                        {{ $item->stt }}
                                     </td>
                                     <td>
-                                        @if ($i % 2 == 0)
-                                            <i class="fa-solid fa-circle connected"></i>
-                                            Hoạt động
-                                        @else
-                                            <i class="fa-solid fa-circle unconnected"></i>
-                                            Ngưng hoạt động
-                                        @endif
+                                        {{ $item->service_name }}
                                     </td>
                                     <td>
-                                        Tim em
+                                        {{ $item->created_at->format('H:i:m') }} - {{ $item->created_at->format('d/m/Y') }}
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-circle connected" style="color: {{ $item->status_color() }}"></i>
+                                        {{ $item->status() }}
+                                    </td>
+                                    <td>
+                                        {{ $item->device_name }}
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-box">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="fa-solid fa-caret-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="fa-solid fa-caret-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                        {{ $data->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
@@ -96,7 +78,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    
+
     <script>
         $("#kt_daterangepicker_1").daterangepicker();
     </script>

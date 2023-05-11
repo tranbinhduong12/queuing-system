@@ -12,6 +12,12 @@
         <p class="title">
             Quản lý vai trò
         </p>
+        {{-- Thông báo lỗi --}}
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Lỗi!</strong> {{ $errors->first() }}
+            </div>
+        @endif
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
@@ -26,11 +32,11 @@
                         <div class="col-md-6" style="padding-right: 12px">
                             <div class="form-group">
                                 <label for="rolename">Tên vai trò: <span style="color: red; font-size: 18px">*</span></label>
-                                <input type="text" class="form-control" id="rolename" name="name" required placeholder="Nhập tên vai trò">
+                                <input type="text" class="form-control" id="rolename" name="name" required placeholder="Nhập tên vai trò" value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label for="description">Mô tả: <span style="color: red; font-size: 18px">*</span></label>
-                                <textarea name="description" class="form-control" id="description" placeholder="Nhập mô tả"></textarea>
+                                <textarea name="description" class="form-control" id="description" placeholder="Nhập mô tả">{{ old("description") }}</textarea>
                             </div>
                             <div class="form-group">
                                 <p class="text-alert-require">

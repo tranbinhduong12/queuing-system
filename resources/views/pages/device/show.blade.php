@@ -15,7 +15,7 @@
             <div class="content">
                 <div class="content-white">
                     <!-- Content -->
-                    <a href="{{ route('auth.device.create') }}">
+                    <a href="{{ route('admin.device.edit', $data->id) }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-pen"></i>
                             <p>
@@ -36,7 +36,7 @@
                                     Mã Thiết bị:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_id }}
+                                    {{ $data->id }}
                                 </span>
                             </label>
                         </div>
@@ -46,7 +46,7 @@
                                     Loại thiết bị:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_type }}
+                                    {{ $data->type }}
                                 </span>
                             </label>
                         </div>
@@ -56,7 +56,7 @@
                                     Tên thiết bị:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_name }}
+                                    {{ $data->name }}
                                 </span>
                             </label>
                         </div>
@@ -66,7 +66,7 @@
                                     Tên đăng nhập:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_username }}
+                                    {{ $data->username }}
                                 </span>
                             </label>
                         </div>
@@ -76,7 +76,7 @@
                                     Địa chỉ ip:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_ip }}
+                                    {{ $data->ip }}
                                 </span>
                             </label>
                         </div>
@@ -86,7 +86,7 @@
                                     Mật khẩu:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->device_password }}
+                                    {{ $data->password }}
                                 </span>
                             </label>
                         </div>
@@ -97,7 +97,7 @@
                                 </span>
                                 <br>
                                 <span class="span-data" style="margin-top: 5px">
-                                    {{ $data->service }}
+                                    {{ $data->services()[0] }}
                                 </span>
                             </label>
                         </div>

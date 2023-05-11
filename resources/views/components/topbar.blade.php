@@ -31,30 +31,32 @@
                     </p>
                 </div>
                 <ul class="pop-up-content">
-                    @for ($i = 0; $i <= 10; $i++)
-                        <li class="pop-up-item">
-                            <p class="pop-up-item-name">
-                                Người dùng: Nguyễn Thị Thùy Dung
-                            </p>
-                            <p class="pop-up-item-content">
-                                Thời gian nhận số: 12h20 ngày 30/11/2021
-                            </p>
-                        </li>
-                    @endfor
+                    @foreach ($notifications as $item)
+                        <a href="{{ route('admin.queue.show', $item->id) }}">
+                            <li class="pop-up-item">
+                                <p class="pop-up-item-name">
+                                    Người dùng: {{ $item->name_user }}
+                                </p>
+                                <p class="pop-up-item-content">
+                                    Thời gian nhận số: {{ date('H\hi d/m/Y', strtotime($item->created_at)) }}
+                                </p>
+                            </li>
+                        </a>
+                    @endforeach
                 </ul>
             </div>
         </div>
-        <a href="{{ route("auth.my-profile") }}">
+        <a href="{{ route("admin.my-profile") }}">
             <div class="infor-user">
                 <div class="avatar">
-                    <img src="{{ asset('images/avatar.jpg') }}" alt="avatar">
+                    <img src="{{ asset("images/" . auth()->user()->image . "") }}" alt="avatar">
                 </div>
                 <div class="info-user-name">
                     <span>
                         Xin chào
                     </span>
                     <p>
-                        Trần Bình Dương
+                        {{ auth()->user()->full_name }}
                     </p>
                 </div>
             </div>

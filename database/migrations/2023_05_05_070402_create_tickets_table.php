@@ -16,13 +16,18 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->integer('stt');
-            // service_id connect to services table
-            $table->string('source', 50);
             $table->string('name_user', 50);
             $table->string('phone', 20);
-            $table->string('email', 100);
-            $table->timestamp('expires_at');
-            $table->integer('service_id')->constrained('services')->onDelete('cascade');
+            $table->string('email', 100)->nullable(true);
+            $table->timestamp('expires_at');   
+            $table->tinyInteger('status')->default(1);
+            
+            $table->string('device_id', 50);
+            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
+            
+            $table->string('service_id', 50);
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+        
             $table->timestamps();
         });
     }

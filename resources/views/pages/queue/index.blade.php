@@ -87,7 +87,7 @@
                 </form>
                 <div class="col-md-12" style="margin-top: 16px; position: relative">
                     <!-- Content -->
-                    <a href="{{ route('auth.queue.create') }}">
+                    <a href="{{ route('admin.queue.create') }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-plus"></i>
                             <p>
@@ -109,48 +109,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @foreach ($data as $item)
                                 <tr>
-                                    <td class="text-center">{{ $i }}</td>
-                                    <td>Tên khách hàng</td>
-                                    <td>Tên dịch vụ</td>
-                                    <td>Tdời gian cấp</td>
-                                    <td>Hạn sử dụng</td>
-                                    <td>
-                                        @if ($i % 2 == 0)
-                                            <i class="fa-solid fa-circle connected"></i>
-                                            Hoạt động
-                                        @else
-                                            <i class="fa-solid fa-circle unconnected"></i>
-                                            Ngưng hoạt động
-                                        @endif
-                                    </td>
-                                    <td>Nguồn cấp</td>
                                     <td class="text-center">
-                                        <a href="{{ route('auth.queue.show', $i) }}" class="tag-active">Chi tiết</a>
+                                        {{ $item->stt }}    
+                                    </td>
+                                    <td>
+                                        {{ $item->name_user }}
+                                    </td>
+                                    <td>
+                                        {{ $item->service_name }}
+                                    </td>
+                                    <td>
+                                        {{ $item->created_at->format('H:i:m') }} - {{ $item->created_at->format('d/m/Y') }}
+                                    </td>
+                                    <td>
+                                        {{ (new DateTime('@' . strtotime($item->expires_at)))->format('H:i:s') }} - {{ (new DateTime('@' . strtotime($item->expires_at)))->format('d/m/Y') }}
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-circle connected" style="color: {{ $item->status_color() }}"></i>
+                                        {{ $item->status() }}
+                                    </td>
+                                    <td>
+                                        {{ $item->device_name }}
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{ route('admin.queue.show', $item->id) }}" class="tag-active">Chi tiết</a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-box">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="fa-solid fa-caret-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="fa-solid fa-caret-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $data->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class history_user extends Model
 {
     use HasFactory;
+    protected $table = "history_users";
+    protected $fillable = [
+        'user_id',
+        'ip',
+        'action',
+    ];
 }

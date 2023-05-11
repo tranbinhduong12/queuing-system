@@ -12,26 +12,26 @@
                 Dashboard
             </li>
         </a>
-        <a href="{{ route('auth.device.index') }}">
-            <li class="item{{ request()->routeIs('auth.device.*') ? ' item-active' : '' }}">
+        <a href="{{ route('admin.device.index') }}">
+            <li class="item{{ request()->routeIs('admin.device.*') ? ' item-active' : '' }}">
                 <i class="fa-solid fa-display"></i>
                 thiết bị
             </li>
         </a>
-        <a href="{{ route('auth.service.index') }}">
-            <li class="item{{ request()->routeIs('auth.service.*') ? ' item-active' : '' }}">
+        <a href="{{ route('admin.service.index') }}">
+            <li class="item{{ request()->routeIs('admin.service.*') ? ' item-active' : '' }}">
                 <i class="fa-regular fa-comments"></i>
                 dịch vụ
             </li>
         </a>
-        <a href="{{ route('auth.queue.index') }}">
-            <li class="item{{ request()->routeIs('auth.queue.*') ? ' item-active' : '' }}">
+        <a href="{{ route('admin.queue.index') }}">
+            <li class="item{{ request()->routeIs('admin.queue.*') ? ' item-active' : '' }}">
                 <i class="fa-solid fa-layer-group"></i>
                 cấp số
             </li>
         </a>
-        <a href="{{ route('auth.report.index') }}">
-            <li class="item{{ request()->routeIs('auth.report.index') ? ' item-active' : '' }}">
+        <a href="{{ route('admin.report.index') }}">
+            <li class="item{{ request()->routeIs('admin.report.index') ? ' item-active' : '' }}">
                 <i class="fa-regular fa-file-lines"></i>
                 báo cáo
             </li>
@@ -58,7 +58,7 @@
                 </a>
             </ul>
         </li>
-        <a href="">
+        <a href="{{ route('admin.logout') }}">
             <li class="item item-end">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout
