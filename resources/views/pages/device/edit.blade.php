@@ -36,7 +36,7 @@
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
-                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('admin.device.update', $id) }}">
+                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('admin.device.update', $id_device) }}">
                         <!-- Search section -->
                         @method('PUT')
                         @csrf
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="device_id">Mã Thiết bị: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="device_id" name="id" placeholder="Nhập mã Thiết bị" value="{{ $data->id }}">
+                            <input type="text" class="form-control" id="device_id" name="id_device" placeholder="Nhập mã Thiết bị" value="{{ $data->id_device }}">
                         </div>
                         <div class="form-group">
                             <label for="device_type">Loại thiết bị:</label>
@@ -94,7 +94,7 @@
                                       
                 </div>
                 <div class="form-btn">
-                    <a href="{{ route('admin.device.show', $id) }}">
+                    <a href="{{ route('admin.device.show', $id_device) }}">
                         <button class="btn btn-blur">Hủy bỏ</button>
                     </a>
                     <button class="btn btn-bold" onclick="submit()">Cập nhập</button>

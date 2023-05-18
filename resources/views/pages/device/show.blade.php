@@ -15,7 +15,7 @@
             <div class="content">
                 <div class="content-white">
                     <!-- Content -->
-                    <a href="{{ route('admin.device.edit', $data->id) }}">
+                    <a href="{{ route('admin.device.edit', $data->id_device) }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-pen"></i>
                             <p>
@@ -36,7 +36,7 @@
                                     Mã Thiết bị:
                                 </span>
                                 <span class="span-data">
-                                    {{ $data->id }}
+                                    {{ $data->id_device }}
                                 </span>
                             </label>
                         </div>

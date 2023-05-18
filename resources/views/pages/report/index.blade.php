@@ -25,7 +25,7 @@
                 </form>
                 <div class="col-md-12" style="margin-top: 16px; position: relative">
                     <!-- Content -->
-                    <a href="#">
+                    <a href="{{ route('admin.service.create') }}">
                         <button class="btn-add">
                             <i class="fa-solid fa-file-arrow-down"></i>
                             <p>
@@ -47,7 +47,7 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td class="text-center">
-                                        {{ $item->stt }}
+                                        {{ $item->stt }}    
                                     </td>
                                     <td>
                                         {{ $item->service_name }}
@@ -78,7 +78,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+    
     <script>
         $("#kt_daterangepicker_1").daterangepicker();
     </script>

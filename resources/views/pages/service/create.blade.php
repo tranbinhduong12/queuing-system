@@ -36,7 +36,7 @@
                             <div class="form-group" style="max-width: calc(100% - 24px)">
                                 <label for="service_id">Mã dịch vụ: <span
                                         style="color: red; font-size: 18px">*</span></label>
-                                <input type="text" class="form-control" id="service_id" name="id" required
+                                <input type="text" class="form-control" id="service_id" name="id_service" required
                                     placeholder="Nhập mã dịch vụ">
                             </div>
                             <div class="form-group" style="max-width: calc(100% - 24px)">

@@ -25,7 +25,7 @@ class ServiceUpdate extends FormRequest
     {
         return [
             // id bắt buộc phải có, là duy nhất, không được trùng
-            'id' => 'required',
+            'id_service' => 'required',
             'name' => 'required',
         ];
     }
@@ -34,7 +34,7 @@ class ServiceUpdate extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'Mã dịch vụ không được để trống',
+            'id_service.required' => 'Mã dịch vụ không được để trống',
             'name.required' => 'Tên dịch vụ không được để trống',
         ];
     }

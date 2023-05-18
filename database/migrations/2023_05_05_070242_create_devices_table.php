@@ -14,7 +14,8 @@ class CreateDevicesTable extends Migration
     public function up()
     {
         Schema::create('devices', function (Blueprint $table) {
-            $table->string('id', 50)->primary();
+            $table->id();
+            $table->string('id_device', 50)->unique();
             $table->string('name', 100);
             $table->string('username', 100);
             $table->string('password', 100);

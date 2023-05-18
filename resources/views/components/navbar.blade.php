@@ -5,8 +5,8 @@
         </a>
     </div>
     <ul class="navbar-menu">
-        <a href="">
-            <li class="item">
+        <a href="{{ route('admin.dashboard') }}">
+            <li class="item{{ request()->routeIs('admin.dashboard') ? ' item-active' : '' }}">
                 {{-- icon Dashboard --}}
                 <i class="fas fa-tachometer-alt"></i>
                 Dashboard

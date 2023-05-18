@@ -24,7 +24,7 @@ class DeviceUpdate extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
+            'id_device' => 'required',
             'name' => 'required',
             'username' => 'required',
             'ip' => 'required',
@@ -38,7 +38,7 @@ class DeviceUpdate extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'Mã thiết bị không được để trống',
+            'id_device.required' => 'Mã thiết bị không được để trống',
             'name.required' => 'Tên thiết bị không được để trống',
             'username.required' => 'Tên đăng nhập không được để trống',
             'ip.required' => 'Địa chỉ IP không được để trống',

@@ -22,11 +22,9 @@ class CreateTicketsTable extends Migration
             $table->timestamp('expires_at');   
             $table->tinyInteger('status')->default(1);
             
-            $table->string('device_id', 50);
-            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
+            $table->foreignId('device_id')->constrained('devices')->onDelete('cascade');
             
-            $table->string('service_id', 50);
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
         
             $table->timestamps();
         });

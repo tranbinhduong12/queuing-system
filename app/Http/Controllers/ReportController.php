@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+    public function Dashboard(){
+        return view('pages/report/Dashboard', [
+        ]);
+    }
     public function report() {
         $data = ticket::select('tickets.*', 'services.name as service_name', 'devices.name as device_name')
                 ->join('services', 'services.id', '=', 'tickets.service_id')

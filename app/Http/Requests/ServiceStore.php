@@ -25,7 +25,7 @@ class ServiceStore extends FormRequest
     {
         return [
             // id bắt buộc phải có, là duy nhất, không được trùng
-            'id' => 'required|unique:services',
+            'id_service' => 'required|unique:services',
             'name' => 'required',
         ];
     }
@@ -34,8 +34,8 @@ class ServiceStore extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'Mã dịch vụ không được để trống',
-            'id.unique' => 'Mã dịch vụ đã tồn tại',
+            'id_service.required' => 'Mã dịch vụ không được để trống',
+            'id_service.unique' => 'Mã dịch vụ đã tồn tại',
             'name.required' => 'Tên dịch vụ không được để trống',
         ];
     }

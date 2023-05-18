@@ -11,7 +11,7 @@ class device extends Model
     protected $table = 'devices';
 
     protected $fillable = [
-        'id',
+        'id_device',
         'name',
         'username',
         'password',

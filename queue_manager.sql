@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th5 10, 2023 lúc 03:58 PM
+-- Thời gian đã tạo: Th5 17, 2023 lúc 09:03 PM
 -- Phiên bản máy phục vụ: 5.7.33
 -- Phiên bản PHP: 7.4.19
 
@@ -59,14 +59,15 @@ INSERT INTO `actions` (`id`, `name`, `description`, `group`, `created_at`, `upda
 --
 
 CREATE TABLE `devices` (
-  `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_device` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ip` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `service_ids` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `online` tinyint(4) NOT NULL DEFAULT '1',
+  `online` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -75,10 +76,10 @@ CREATE TABLE `devices` (
 -- Đang đổ dữ liệu cho bảng `devices`
 --
 
-INSERT INTO `devices` (`id`, `name`, `username`, `password`, `ip`, `service_ids`, `type`, `online`, `created_at`, `updated_at`) VALUES
-('tb01', 'thiết bị 01', 'tb01', 'tb01', '127.0.0.1', 'dv2,', 'Display counter', 1, '2023-05-10 00:49:29', '2023-05-10 01:19:08'),
-('tb02', 'thiết bị test', 'tb02', 'tb02', '127.0.0.1', 'dv1,dv2,', 'Kiosk', 1, '2023-05-10 00:51:23', '2023-05-10 00:51:23'),
-('tb03', 'Thiết bị trợ giúp người cao tuổi', 'tb03', 'tb03', '127.0.0.1', 'dv1,dv3,', 'Display counter', 1, '2023-05-10 15:32:18', '2023-05-10 15:32:18');
+INSERT INTO `devices` (`id`, `id_device`, `name`, `username`, `password`, `ip`, `service_ids`, `type`, `online`, `created_at`, `updated_at`) VALUES
+(1, 'tb01', 'thiết bị thử nghiệm 1', 'tb01', 'tb01', '127.0.0.1', '1,2,3,4,5,', 'Kiosk', 1, '2023-05-16 08:21:58', '2023-05-16 08:27:25'),
+(2, 'tb02', 'thiết bị thử nghiệm 2', 'tb02', 'tb02', '127.0.0.1', '3,4,', 'Display counter', 1, '2023-05-16 08:27:53', '2023-05-16 08:27:53'),
+(3, 'tb03', 'thiết bị thử nghiệm 3', 'tb03', 'tb03', '127.0.0.1', '1,3,4,5,', 'Kiosk', 1, '2023-05-16 08:28:35', '2023-05-16 08:28:35');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,26 @@ INSERT INTO `history_users` (`id`, `user_id`, `ip`, `action`, `created_at`, `upd
 (5, 2, '127.0.0.1', 'Thêm mới dịch vụ dv3', '2023-05-10 15:30:53', '2023-05-10 15:30:53'),
 (6, 2, '127.0.0.1', 'Cập nhật thông tin dịch vụ dv1', '2023-05-10 15:31:11', '2023-05-10 15:31:11'),
 (7, 2, '127.0.0.1', 'Cập nhật thông tin dịch vụ dv2', '2023-05-10 15:31:35', '2023-05-10 15:31:35'),
-(8, 2, '127.0.0.1', 'Thêm mới thiết bị tb03', '2023-05-10 15:32:18', '2023-05-10 15:32:18');
+(8, 2, '127.0.0.1', 'Thêm mới thiết bị tb03', '2023-05-10 15:32:18', '2023-05-10 15:32:18'),
+(9, 1, '127.0.0.1', 'Đăng nhập vào hệ thống', '2023-05-16 08:07:23', '2023-05-16 08:07:23'),
+(10, 1, '127.0.0.1', 'Thêm mới dịch vụ dv01', '2023-05-16 08:10:33', '2023-05-16 08:10:33'),
+(11, 1, '127.0.0.1', 'Cập nhật thông tin dịch vụ dv01', '2023-05-16 08:14:51', '2023-05-16 08:14:51'),
+(12, 1, '127.0.0.1', 'Cập nhật thông tin dịch vụ dv001', '2023-05-16 08:17:32', '2023-05-16 08:17:32'),
+(13, 1, '127.0.0.1', 'Cập nhật thông tin dịch vụ dv01', '2023-05-16 08:17:48', '2023-05-16 08:17:48'),
+(14, 1, '127.0.0.1', 'Thêm mới dịch vụ dv02', '2023-05-16 08:18:14', '2023-05-16 08:18:14'),
+(15, 1, '127.0.0.1', 'Thêm mới dịch vụ dv03', '2023-05-16 08:18:40', '2023-05-16 08:18:40'),
+(16, 1, '127.0.0.1', 'Thêm mới dịch vụ dv04', '2023-05-16 08:18:56', '2023-05-16 08:18:56'),
+(17, 1, '127.0.0.1', 'Thêm mới dịch vụ dv05', '2023-05-16 08:19:26', '2023-05-16 08:19:26'),
+(18, 1, '127.0.0.1', 'Thêm mới thiết bị ', '2023-05-16 08:21:58', '2023-05-16 08:21:58'),
+(19, 1, '127.0.0.1', 'Cập nhật thông tin thiết bị tb01', '2023-05-16 08:27:11', '2023-05-16 08:27:11'),
+(20, 1, '127.0.0.1', 'Cập nhật thông tin thiết bị tb01', '2023-05-16 08:27:25', '2023-05-16 08:27:25'),
+(21, 1, '127.0.0.1', 'Thêm mới thiết bị ', '2023-05-16 08:27:53', '2023-05-16 08:27:53'),
+(22, 1, '127.0.0.1', 'Thêm mới thiết bị tb03', '2023-05-16 08:28:35', '2023-05-16 08:28:35'),
+(23, 1, '127.0.0.1', 'Đăng nhập vào hệ thống', '2023-05-16 09:01:16', '2023-05-16 09:01:16'),
+(24, 1, '127.0.0.1', 'Đăng nhập vào hệ thống', '2023-05-17 19:00:07', '2023-05-17 19:00:07'),
+(25, 1, '127.0.0.1', 'Đăng nhập vào hệ thống', '2023-05-17 19:01:47', '2023-05-17 19:01:47'),
+(26, 1, '127.0.0.1', 'Đăng xuất khỏi hệ thống', '2023-05-17 20:52:09', '2023-05-17 20:52:09'),
+(27, 1, '127.0.0.1', 'Đăng nhập vào hệ thống', '2023-05-17 20:57:37', '2023-05-17 20:57:37');
 
 -- --------------------------------------------------------
 
@@ -131,9 +151,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2023_05_05_070011_create_tokens_table', 1),
 (5, '2023_05_05_070155_create_actions_table', 1),
 (6, '2023_05_05_070214_create_history_users_table', 1),
-(11, '2023_05_05_070254_create_services_table', 2),
-(12, '2023_05_05_070242_create_devices_table', 3),
-(16, '2023_05_05_070402_create_tickets_table', 4);
+(17, '2023_05_05_070242_create_devices_table', 2),
+(18, '2023_05_05_070254_create_services_table', 2),
+(19, '2023_05_05_070402_create_tickets_table', 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +205,8 @@ INSERT INTO `roles` (`id`, `name`, `description`, `action_ids`, `status`, `creat
 --
 
 CREATE TABLE `services` (
-  `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_service` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `active` tinyint(1) NOT NULL DEFAULT '1',
@@ -200,10 +221,12 @@ CREATE TABLE `services` (
 -- Đang đổ dữ liệu cho bảng `services`
 --
 
-INSERT INTO `services` (`id`, `name`, `description`, `active`, `prefix`, `suffix`, `reset`, `created_at`, `updated_at`) VALUES
-('dv1', 'khám theo yêu cầu', 'khám tổng quát từ a-z', 1, 1, 100, 1, '2023-05-08 09:05:30', '2023-05-10 15:31:11'),
-('dv2', 'khám da liễu', 'khám nha khoa', 1, 2, 888, 0, '2023-05-08 09:06:21', '2023-05-10 15:31:35'),
-('dv3', 'Khám theo bảo hiểm', 'Khám theo bảo hiểm dịch vụ giá rẻ', 1, 1, 9999, 1, '2023-05-10 15:30:53', '2023-05-10 15:30:53');
+INSERT INTO `services` (`id`, `id_service`, `name`, `description`, `active`, `prefix`, `suffix`, `reset`, `created_at`, `updated_at`) VALUES
+(1, 'dv01', 'Dịch vụ răng hàm mặt', 'dich vu', 1, 1, 9999, 1, '2023-05-16 08:10:33', '2023-05-16 08:17:48'),
+(2, 'dv02', 'dịch vụ khám răng miệng', NULL, 1, 1, 9999, 1, '2023-05-16 08:18:14', '2023-05-16 08:18:14'),
+(3, 'dv03', 'Dịch vụ khám thân thể', NULL, 1, 1, 9999, 0, '2023-05-16 08:18:40', '2023-05-16 08:18:40'),
+(4, 'dv04', 'dịch vụ nội soi', NULL, 1, 1, 9999, 0, '2023-05-16 08:18:56', '2023-05-16 08:18:56'),
+(5, 'dv05', 'dịch vụ khám và phục hồi tâm lý', NULL, 1, 1, 9999, 0, '2023-05-16 08:19:26', '2023-05-16 08:19:26');
 
 -- --------------------------------------------------------
 
@@ -219,8 +242,8 @@ CREATE TABLE `tickets` (
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `expires_at` timestamp NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1',
-  `device_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `service_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `device_id` bigint(20) UNSIGNED NOT NULL,
+  `service_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -230,11 +253,10 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `stt`, `name_user`, `phone`, `email`, `expires_at`, `status`, `device_id`, `service_id`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Trần Bình Dương', '0987654321', NULL, '2023-05-10 11:00:00', 0, 'tb02', 'dv1', '2023-05-10 02:37:32', '2023-05-10 02:37:32'),
-(3, 2, 'Phạm Tiến Thành Công', '0935281926', NULL, '2023-05-10 11:00:00', 0, 'tb02', 'dv1', '2023-05-10 02:44:54', '2023-05-10 02:44:54'),
-(4, 3, 'Phạm Tiến Thành Công', '0987654321', NULL, '2023-05-10 11:00:00', 0, 'tb02', 'dv2', '2023-05-10 09:51:48', '2023-05-10 09:51:48'),
-(5, 1, 'Phạm Tiến Thành Công', '0935281926', NULL, '2023-05-10 11:00:00', 0, 'tb01', 'dv2', '2023-05-10 09:52:03', '2023-05-10 09:52:03'),
-(6, 4, 'Nguyễn Thị Lan', '09327354312', NULL, '2023-05-10 11:00:00', 1, 'tb02', 'dv1', '2023-05-10 10:12:04', '2023-05-10 10:12:04');
+(1, 1, 'Trần Bình Dương', '0987654321', NULL, '2023-05-16 11:00:00', 1, 3, 1, '2023-05-16 08:30:11', '2023-05-16 08:30:11'),
+(2, 1, 'Nguyễn Thị Lan', '0987654321', NULL, '2023-05-16 11:00:00', 1, 2, 3, '2023-05-16 08:30:26', '2023-05-16 08:30:26'),
+(3, 2, 'Phạm Tiến Thành Công', '0987654321', NULL, '2023-05-16 11:00:00', 1, 2, 1, '2023-05-16 08:30:35', '2023-05-16 08:30:35'),
+(4, 1, 'phạm dũng', '0969696966', NULL, '2023-05-16 11:00:00', 1, 1, 2, '2023-05-16 10:38:31', '2023-05-16 10:38:31');
 
 -- --------------------------------------------------------
 
@@ -294,7 +316,8 @@ ALTER TABLE `actions`
 -- Chỉ mục cho bảng `devices`
 --
 ALTER TABLE `devices`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `devices_id_device_unique` (`id_device`);
 
 --
 -- Chỉ mục cho bảng `history_users`
@@ -327,7 +350,8 @@ ALTER TABLE `roles`
 -- Chỉ mục cho bảng `services`
 --
 ALTER TABLE `services`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `services_id_service_unique` (`id_service`);
 
 --
 -- Chỉ mục cho bảng `tickets`
@@ -366,16 +390,22 @@ ALTER TABLE `actions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT cho bảng `devices`
+--
+ALTER TABLE `devices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT cho bảng `history_users`
 --
 ALTER TABLE `history_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -390,10 +420,16 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT cho bảng `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT cho bảng `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tokens`

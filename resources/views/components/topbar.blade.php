@@ -34,7 +34,7 @@
                     @foreach ($notifications as $item)
                         <a href="{{ route('admin.queue.show', $item->id) }}">
                             <li class="pop-up-item">
-                                <p class="pop-up-item-name">
+                                <p class="pop-up-item-name"  style="color: black">
                                     Người dùng: {{ $item->name_user }}
                                 </p>
                                 <p class="pop-up-item-content">

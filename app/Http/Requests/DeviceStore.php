@@ -24,7 +24,7 @@ class DeviceStore extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|unique:devices',
+            'id_device' => 'required|unique:devices',
             'name' => 'required',
             'username' => 'required',
             'ip' => 'required',
@@ -38,8 +38,8 @@ class DeviceStore extends FormRequest
     public function messages()
     {
         return [
-            'id.required' => 'Mã thiết bị không được để trống',
-            'id.unique' => 'Mã thiết bị đã tồn tại',
+            'id_device.required' => 'Mã thiết bị không được để trống',
+            'id_device.unique' => 'Mã thiết bị đã tồn tại',
             'name.required' => 'Tên thiết bị không được để trống',
             'username.required' => 'Tên đăng nhập không được để trống',
             'ip.required' => 'Địa chỉ IP không được để trống',

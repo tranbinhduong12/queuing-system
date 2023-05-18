@@ -46,8 +46,8 @@
                         </div>
                         <div class="form-group">
                             <label for="device_id">Mã Thiết bị: <span style="color: red; font-size: 18px">*</span></label>
-                            <input type="text" class="form-control" id="device_id" name="id"
-                                placeholder="Nhập mã Thiết bị" value="{{ old('id') }}">
+                            <input type="text" class="form-control" id="device_id" name="id_device"
+                                placeholder="Nhập mã Thiết bị" value="{{ old('id_device') }}">
                         </div>
                         <div class="form-group">
                             <label for="device_type">Loại thiết bị:</label>

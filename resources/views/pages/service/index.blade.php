@@ -73,7 +73,7 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>
-                                        {{ $item['id'] }}
+                                        {{ $item['id_service'] }}
                                     </td>
                                     <td>
                                         {{ $item->name }}
@@ -90,8 +90,8 @@
                                             Ngưng hoạt động
                                         @endif
                                     </td>
-                                    <td><a class="tag-active" href="{{ route('admin.service.show', $item->id) }}">Chi tiết</a></td>
-                                    <td><a class="tag-active" href="{{ route('admin.service.edit', $item->id) }}">Cập nhập</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.service.show', $item->id_service) }}">Chi tiết</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.service.edit', $item->id_service) }}">Cập nhập</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

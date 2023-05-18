@@ -71,7 +71,7 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>
-                                        {{ $item->id }}
+                                        {{ $item->id_device }}
                                     </td>
                                     <td>
                                         {{ $item->name }}
@@ -99,8 +99,8 @@
                                             {{ $item->services()[0] }}
                                         </span>
                                     </td>
-                                    <td><a class="tag-active" href="{{ route('admin.device.show', $item->id) }}">Chi tiết</a></td>
-                                    <td><a class="tag-active" href="{{ route('admin.device.edit', $item->id) }}">Cập nhập</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.device.show', $item->id_device) }}">Chi tiết</a></td>
+                                    <td><a class="tag-active" href="{{ route('admin.device.edit', $item->id_device) }}">Cập nhập</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

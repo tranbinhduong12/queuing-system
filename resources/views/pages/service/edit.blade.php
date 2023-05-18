@@ -24,7 +24,7 @@
         <div class="content-container">
             <div class="content">
                 <div class="content-white">
-                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('admin.service.update', $id) }}">
+                    <form class="col-md-12 form-search" id="form-submit" method="POST" action="{{ route('admin.service.update', $id_service) }}">
                         <!-- Search section -->
                         @csrf
                         @method('PUT')
@@ -37,8 +37,8 @@
                             <div class="form-group" style="max-width: calc(100% - 24px)">
                                 <label for="service_id">Mã dịch vụ: <span
                                         style="color: red; font-size: 18px">*</span></label>
-                                <input type="text" class="form-control" id="service_id" name="id"
-                                    placeholder="Nhập mã dịch vụ" value="{{ $data->id }}">
+                                <input type="text" class="form-control" id="service_id" name="id_service"
+                                    placeholder="Nhập mã dịch vụ" value="{{ $data->id_service }}">
                             </div>
                             <div class="form-group" style="max-width: calc(100% - 24px)">
                                 <label for="service_name">Tên dịch vụ: <span

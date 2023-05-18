@@ -49,7 +49,7 @@ class DeviceController extends Controller
     public function store(DeviceStore $request)
     {
         $newDevice = new device();
-        $newDevice->id = $request->id;
+        $newDevice->id_device = $request->id_device;
         $newDevice->name = $request->name;
         $newDevice->username = $request->username;
         $newDevice->password = $request->password;
@@ -61,33 +61,33 @@ class DeviceController extends Controller
         }
         $newDevice->service_ids = $service_ids;
         $newDevice->save();
-        $this->historyUser("Thêm mới thiết bị $request->id");
-        return redirect()->route('admin.device.show', $request->id);
+        $this->historyUser("Thêm mới thiết bị $request->id_device");
+        return redirect()->route('admin.device.show', $request->id_device);
     }
 
     public function edit($id)
     {
-        $data = device::find($id);
+        $data = device::select('*')->where('id_device', $id)->first();
         $services = service::all();
         return view('pages/device/edit', [
             'data' => $data,
             'services' => $services,
-            'id' => $id,
+            'id_device' => $id,
             'records' => $this->records
         ]);
     }
 
     public function update(DeviceUpdate $request, $id)
     {
-        $newDevice = device::find($id);
-        if ($id != $request->id) {
+        $newDevice = device::select('*')->where('id_device', $id)->first();
+        if ($id != $request->id_device) {
             // check id is unique
-            $check = device::find($request->id);
+            $check = device::select('*')->where('id_device', $request->id_device)->first();
             if ($check) {
                 return redirect()->back()->withErrors(['id' => 'ID đã tồn tại']);
             }
         }
-        $newDevice->id = $request->id;
+        $newDevice->id_device = $request->id_device;
         $newDevice->name = $request->name;
         $newDevice->username = $request->username;
         $newDevice->password = $request->password;
@@ -99,16 +99,16 @@ class DeviceController extends Controller
         }
         $newDevice->service_ids = $service_ids;
         $newDevice->save();
-        $this->historyUser("Cập nhật thông tin thiết bị $request->id");
-        return redirect()->route('admin.device.show', $request->id);
+        $this->historyUser("Cập nhật thông tin thiết bị $request->id_device");
+        return redirect()->route('admin.device.show', $request->id_device);
     }
 
     public function show($id)
     {
-        $data = device::find($id);
+        $data = device::select('*')->where('id_device', $id)->first();
         return view('pages/device/show', [
             'data' => $data,
-            'id' => $id,
+            'id_device' => $id,
             'records' => $this->records
         ]);
     }

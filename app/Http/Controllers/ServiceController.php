@@ -55,14 +55,14 @@ class ServiceController extends Controller
         }
         // Xử lý lưu tài nguyên
         $newService = new service();
-        $newService->id = $request->input('id');
+        $newService->id_service = $request->input('id_service');
         $newService->name = $request->input('name');
         $newService->description = $request->input('description');
         $newService->prefix = $prefix;
         $newService->suffix = $suffix;
         $newService->reset = $request->input('reset') == 'on' ? 1 : 0;
         $newService->save();
-        $this->historyUser("Thêm mới dịch vụ $request->id");
+        $this->historyUser("Thêm mới dịch vụ $request->id_service");
         return redirect()->route('admin.service.index');
     }
 
@@ -74,10 +74,10 @@ class ServiceController extends Controller
         ]);
         $min = 1;
         $max = 9999;
-        $data = service::find($id);
+        $data = service::select('*')->where('id_service', $id)->first();
         return view('pages/service/edit', [
             'data' => $data,
-            'id' => $id,
+            'id_service' => $id,
             'min' => $min,
             'max' => $max,
             'records' => $this->records
@@ -95,34 +95,34 @@ class ServiceController extends Controller
             $suffix = $request->input('suffix');
         }
         // Xử lý lưu tài nguyên
-        $newService = service::find($id);
-        if ($id != $request->input('id')) {
-            $check = service::find($request->input('id'));
+        $newService = service::select('*')->where('id_service', $id)->first();
+        if ($id != $request->input('id_service')) {
+            $check = service::select('*')->where('id_service', $request->input('id_service'))->first();
             if ($check) {
                 return redirect()->back()->withErrors(['id' => 'ID đã tồn tại']);
             }
         }
-        $newService->id = $request->input('id');
+        $newService->id_service = $request->input('id_service');
         $newService->name = $request->input('name');
         $newService->description = $request->input('description');
         $newService->prefix = $prefix;
         $newService->suffix = $suffix;
         $newService->reset = $request->input('reset') == 'on' ? 1 : 0;
         $newService->save();
-        $this->historyUser("Cập nhật thông tin dịch vụ $request->id");
-        return redirect()->route('admin.service.show', $newService->id);
+        $this->historyUser("Cập nhật thông tin dịch vụ $request->id_service");
+        return redirect()->route('admin.service.show', $newService->id_service);
     }
 
     public function show($id)
     {
-        $data = service::find($id);
+        $data = service::select('*')->where('id_service', $id)->first();;
         $data2 = ticket::where('service_id', $data->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         return view('pages/service/show', [
             'data' => $data,
             'data2' => $data2,
-            'id' => $id,
+            'id_service' => $id,
             'records' => $this->records,
         ]);
     }

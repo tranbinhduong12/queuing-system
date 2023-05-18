@@ -16,7 +16,7 @@
         </p>
         <div class="content-container">
             <div class="content row" style="max-width: 1150px">
-                <a href="{{ route('admin.service.edit', $id) }}">
+                <a href="{{ route('admin.service.edit', $id_service) }}">
                     <button class="btn-add">
                         <i class="fa-solid fa-pen"></i>
                         <p>
